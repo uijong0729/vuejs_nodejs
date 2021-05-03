@@ -1,0 +1,8 @@
+D:
+cd FrontendCode\Playground
+git init
+git add .
+git commit -m "commit"
+
+git remmote add origin 
+git push -u origin master

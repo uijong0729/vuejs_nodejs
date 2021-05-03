@@ -1,0 +1,32 @@
+<!-- !를 입력하고 Tab키를 눌러서 자동 생성된 코드 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>    
+</head>
+<body>
+    <!-- dev#app 를 입력하고 Tab키를 눌러서 생성된 코드 -->
+    <div id="app"></div>
+
+    <script>
+        var div = document.querySelector('#app');
+        var str = 'hello world';
+        div.innerHTML = str;
+
+        // div입력호 tab키를 눌렀을때 생성된 코드
+        console.log(div);
+        
+        // 1.문자열 수정 
+        str = "hello world!!!";
+        console.log(div);
+        // 2.다시한번 대입해줘야만 화면에 반영된다.
+        div.innerHTML = str;
+        console.log(div);
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <dev id="app">
+        <!-- 컴포넌트 영역 START-->
+        <app-header>
+
+        </app-header>
+        <app-content>
+
+        </app-content>
+        <!-- 컴포넌트 영역 END-->
+    </dev>
+
+    <dev id="app2">
+        <app-header>
+
+        </app-header>
+        <!-- 컴포넌트 영역 START-->
+        <app-header-local>
+
+        </app-header-local>
+        <app-content-local>
+
+        </app-content-local>
+        <!-- 컴포넌트 영역 END-->
+    </dev>
+
+    <dev id="app3">
+        <app-header>
+
+        </app-header>
+        <!-- 컴포넌트 영역 START-->
+        <app-footer>
+
+        </app-footer>
+        <!-- 컴포넌트 영역 END-->
+    </dev>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        //================================================================//
+        // 1. 전역 컴포넌트 등록방식
+        // Vue.component('컴포넌트 이름', 컴포넌트 내용);
+        //================================================================//
+        Vue.component('app-header', {
+            template: '<h1>=====Global Header=====</h1>'
+        });
+        Vue.component('app-content', {
+            template: '<div>CONTENT</div>'
+        })
+
+        new Vue({
+            el: '#app'
+        });
+        
+
+        //================================================================//
+        // 2. 지역 컴포넌트 등록방식
+        // vue의 속성 정의 components: { '컴포넌트 이름' : '컴포넌트 내용' } 
+        //================================================================//
+        new Vue({
+            el: '#app2',
+            components: {
+                'app-header-local': {
+                    template: '<h1>Header-Local</h1>'
+                },
+                'app-content-local': {
+                    template: '<div>CONTENT</div>'
+                }
+            }
+        });
+        
+        new Vue({
+            el: '#app3',
+            components: {
+                'app-footer': {
+                    template: '<h1>footer</h1>'
+                }
+            }
+        });
+    </script>
+</body>
+</html>
