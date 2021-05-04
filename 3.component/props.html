@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-bind:props속성이름="상위 컴포넌트의 data이름" -->
+        <app-header v-bind:propsdata="msg">
+            
+        </app-header>
+        <app-content v-bind:propsdata="num">
+
+        </app-content>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var appHeader = {
+            template: '<h1> {{ propsdata }}</h1>',
+            // props는 배열로 지정
+            // props로 지정된 데이터는 상위 컴포넌트의 데이터 변화에 동기화되어 화면표시 값이 자동 반영된다.
+            // props명 propsdata는 이름이 겹쳐도 상관없다.
+            props: ['propsdata']
+        }
+
+        var appContent = {
+            template: '<div> {{ propsdata }} </div>',
+            props: ['propsdata']
+        }
+
+        new Vue({
+            el: '#app',
+            components: {
+                'app-header': appHeader,
+                'app-content': appContent
+            },
+            data: {
+                msg: 'hi',
+                num: 10
+            }
+        })
+    </script>
+</body>
+</html>

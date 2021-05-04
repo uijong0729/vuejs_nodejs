@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <div id="app">
+            <!-- v-on:하위 컴포넌트에서 발생한 이벤트 이름="상위 컴포넌트의 메서드 이름" -->
+            <app-header v-on:pass="logText">
+
+            </app-header>
+            <app-content v-on:increase="plus">
+                
+            </app-content>
+            <p>
+                {{ num }}
+            </p>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        //================================================================//
+        // 하위 Component와 상위 Component(Root)의 통신
+        //================================================================//
+
+        // 1. 하위 Component 정의 
+        var appHeader = {
+            //================================================================//
+            // emit : v-on으로 이벤트 설정 (v-on은 vue에서 제공하는 속성명)
+            //================================================================//
+            template: '<button v-on:click="passEvent">click me</button>',
+            methods: {
+                passEvent: function(){
+                    // pass라는 이벤트 발생 
+                    this.$emit('pass');
+                }
+            }
+        }
+
+        var appContent = {
+            template: '<button v-on:click="increaseNumber">add</button>',
+            methods: {
+                increaseNumber: function() {
+                    this.$emit('increase')
+                }
+            }
+        }
+
+        // app-header   : 하위 컴포넌트
+        //      ⇅
+        // new vue      : Root 컴포넌트
+
+        // 2. 최상위 Component
+        //new Vue() -> Root component
+        new Vue({
+            el: '#app',
+            components: {
+                'app-header':appHeader,
+                'app-content': appContent
+            },
+            methods: {
+                logText: function(){
+                    console.log("methods");
+                },
+                plus: function(){
+                    this.num++;
+                }
+            },
+            data: {
+                // data의 속성 num은 this.num으로 접근 가능하다. 
+                // vue에서 괄호 밖의 레벨로 간주시킴
+                num: 10
+            }
+        });
+    </script>
+
+</body>
+</html>
