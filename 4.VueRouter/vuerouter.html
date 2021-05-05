@@ -6,9 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<!-- @refer https://router.vuejs.org/installation.html -->
 <body>
+    <!--    new Vue({
+                el: '#app', 
+                router: rt
+            });
+    -->
     <div id="app">
+        <!--router-view : Vue인스턴스에 router를 연결해야지만 사용할 수 있는 태그-->
+        <router-view>
 
+        </router-view>
+        <div>
+            <!--router-link*2 입력후 tab키 누르면 2개 생성-->
+            <!--router-link : 최종적으로는 <a href=""> 태그로 작성됨 -->
+            <router-link to="/login">
+                Login
+            </router-link>
+            <br>
+            <router-link to="/main">
+                Main
+            </router-link>
+        </div>
     </div>
 
     <!-- Vue.js 를 상단에 둔다 -->
@@ -16,32 +36,43 @@
     <!-- Vue-router.js 를 다음에 둔다 -->
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script>
-        var LoginComponent = {
-            template: '<div>login</div>'
-        }
-        var mainComponent = {
-            template: '<div>main</div>'
-        }
-
         // route : (특정한 루트를 따라 무엇을) 보내다, 전송하다
         var rt = new VueRouter({
-            // 페이지의 라우팅 정보 
+            // 페이지의 라우팅 정보를 배열로 작성
             routes: [
+                // login 페이지
                 {
                     // 페이지의 url 이름
+                    // 확인하는 곳 : http://127.0.0.1:5500/Playground/4.VueRouter/vuerouter.html#/login
                     path: '/login',
+                    // 이름 미지정시 Anonymous Component
+                    name: 'loginComponent',
                     // 해당 url에서 표시될 컴포넌트
-                    component: LoginComponent
+                    component: {
+                        template: '<div>login</div>'
+                    },
+                    // 링크 이동시 .html 뒤에 # 문자를 넣지 않음
+                    mode: 'history'
                 },
+                // main 페이지
                 {
+                    // 확인하는 곳 : http://127.0.0.1:5500/Playground/4.VueRouter/vuerouter.html#/main
                     path: '/main',
-                    component: mainComponent
+                    // 이름 미지정시 Anonymous Component
+                    name: 'mainComponent',
+                    // 해당 url에서 표시될 컴포넌트
+                    component: {
+                        template: '<div>main</div>'
+                    },
+                    // 링크 이동시 .html 뒤에 # 문자를 넣지 않음
+                    mode: 'history'
                 }
             ]
         });
 
         new Vue({
             el: '#app', 
+            // 라우터 인스턴스 등록 
             router: rt
         });
 

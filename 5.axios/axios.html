@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <div id="app">
+            <button v-on:click="getData">
+                {{ users }}
+            </button>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                // 초기화 
+                users: []
+            },
+            methods: {
+                getData: function(){
+                    var vueInstance = this;
+                    //json place holder는 http를 테스트하는 사이트
+                    axios.get('https://jsonplaceholder.typicode.com/users/')
+                        .then(function(response){
+                            console.log(response);
+                            // response의 속성들 
+                            console.log(response.data);
+                            console.log(response.config);
+                            console.log(response.headers);
+                            console.log(response.request);
+                            console.log(response.status);
+                            
+                            // 비동기 처리에서 들어오는 콜백함수에서의 this는 
+                            // vue인스턴스에의 this가 아님
+                            // 참고 : console.log(this);
+                            vueInstance.users = response.data;
+                        })
+                        .catch(function(error){
+                            console.log(error);
+                        });
+                }
+            }
+        })
+    </script>
+</body>
+</html>

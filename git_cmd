@@ -6,3 +6,10 @@ git commit -m "commit"
 
 git remote add origin https://github.com/uijong0729/vuejs_nodejs.git
 git push -u origin master
+
+##########################################
+D:
+cd FrontendCode\Playground
+git add *
+git commit -m "append"
+git push -u origin master
