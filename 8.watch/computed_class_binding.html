@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .warning {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--방법1. 자주 쓰이진 않음-->
+        <!-- isError의 boolean값에 따라 다름 -->
+        <!--    (isError == true) : class="warning" 빨간색 -->
+        <!--    (isError == false) : class 없음 -->
+        <p v-bind:class="{ warning: isError }">
+            Hello
+        </p>
+
+        <!--방법2. computed로 정의해서 class문자열 대입. 자주 쓰임-->
+        <p v-bind:class="errorTextColor">
+            Hello
+        </p>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // computed속성과 watch속성의 비교 : https://vuejs.org/v2/guide/computed.html
+        new Vue({
+            el: '#app', 
+            data: {
+                isError: false,
+            },
+            computed: {
+                errorTextColor: function(){
+                    return this.isError ? 'warning' : null;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

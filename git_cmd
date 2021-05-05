@@ -11,5 +11,5 @@ git push -u origin master
 D:
 cd FrontendCode\Playground
 git add *
-git commit -m "append"
+git commit -m "no comment"
 git push -u origin master
