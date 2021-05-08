@@ -7,11 +7,15 @@
       v-on:renew="renewStr">
 
     </app-header>
+    <app-form>
+
+    </app-form>
   </div>
 </template>
 
 <script>
 import AppHeader from './components/AppHeader.vue';
+import AppForm from './components/AppForm.vue';
 
 export default {
   data: function(){
@@ -21,6 +25,7 @@ export default {
   }, 
   components: {
     'app-header': AppHeader,
+    'app-form': AppForm
   },
   methods: {
     renewStr: function(){

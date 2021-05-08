@@ -32,3 +32,6 @@ vue create 'D:\FrontendCode\Playground'
 vue create vue-cli
 cd vue-cli
 npm run serve
+
+### install axios로 axios사용 
+npm i axios
